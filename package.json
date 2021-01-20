@@ -1,7 +1,7 @@
 {
   "name": "@pathnirvanafoundation/pali-script-converter",
   "version": "1.0.0",
-  "description": "Conversion utilities for Pāli scripts with fonts appropriate for each script.",
+  "description": "Library for transliterating pāli across multiple scripts.",
   "main": "lib/pali-script-converter.js",
   "author": "Path Nirvana",
   "license": "CC-BY-NC-SA-4.0",

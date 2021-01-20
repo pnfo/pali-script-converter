@@ -2,7 +2,7 @@
 
 # Pāli Script Converter
 
-Conversion utilities for Pāli scripts with fonts appropriate for each script.
+Library for transliterating pāli across multiple scripts.
 
 ## Scripts
 
