@@ -1,10 +1,14 @@
+// TODO: Clean these up gradually.
+/* eslint-disable no-misleading-character-class */
+/* eslint-disable no-useless-escape */
+/* eslint-disable camelcase */
+/* eslint-disable no-restricted-syntax */
+
 /**
  * Copyright Path Nirvana 2018
  * The code and character mapping defined in this file can not be used for any commercial purposes.
  * Permission from the auther is required for all other purposes.
  */
-
-"use strict";
 
 const Script = Object.freeze({
     SI: 'si',
@@ -26,31 +30,68 @@ const Script = Object.freeze({
     CYRL: 'cy',
 });
 
-const paliScriptInfo = new Map ([
-    [Script.SI, ['Sinhala', 'සිංහල', [[0x0D80, 0x0DFF]], {f: 'sl_flag.png'} ]],
-    [Script.HI, ['Devanagari', 'हिन्दी', [[0x0900, 0x097F]], {f: 'in_flag.png'} ]],
-    [Script.RO, ['Roman', 'Roman', [[0x0000, 0x017F], [0x1E00, 0x1EFF]], {f: 'uk_flag.png'} ]], // latin extended and latin extended additional blocks
-    [Script.THAI, ['Thai', 'ไทย', [[0x0E00, 0x0E7F], 0xF70F, 0xF700], {f: 'th_flag.png'} ]], // thai special letters are outside the range
-    [Script.LAOS, ['Laos', 'ລາວ', [[0x0E80, 0x0EFF]], {f: 'laos_flag.png'} ]],
-    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107F]], {f: 'my_flag.png'} ]],
-    [Script.KM, ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17FF]], {f: 'kh_flag.png'} ]],
-    [Script.BENG, ['Bengali', 'বাংলা', [[0x0980, 0x09FF]], {f: 'bangla_flag.png', g: 'indian'} ]],
-    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0A00, 0x0A7F]], {g: 'indian'} ]],
-    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0A80, 0x0AFF]], {g: 'indian'} ]],
-    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0C00, 0x0C7F]], {g: 'indian'} ]],
-    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0C80, 0x0CFF]], {g: 'indian'} ]],
-    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0D00, 0x0D7F]], {g: 'indian'} ]],
-    [Script.THAM, ['Tai Tham', 'Tai Tham LN', [[0x1A20, 0x1AAF]], {c: 'beta-script', g: 'other'} ]],
-    [Script.BRAH, ['Brahmi', 'Brāhmī', [[0xD804, 0xD804], [0xDC00, 0xDC7F]], {g: 'other'} ]], //charCodeAt returns two codes for each letter [[0x11000, 0x1107F]]
-    [Script.TIBT, ['Tibetan', 'བོད་སྐད།', [[0x0F00, 0x0FFF]], {f: 'tibet_flag.png', c: 'larger', g: 'other'} ]],
-    [Script.CYRL, ['Cyrillic', 'кириллица', [[0x0400, 0x04FF], [0x0300, 0x036F]], {f: 'russia_flag.png', g: 'other'} ]], // also adding the "Combining Diacritical Marks" block
+const paliScriptInfo = new Map([
+    [Script.SI, ['Sinhala', 'සිංහල', [[0x0d80, 0x0dff]], { f: 'sl_flag.png' }]],
+    [Script.HI, ['Devanagari', 'हिन्दी', [[0x0900, 0x097f]], { f: 'in_flag.png' }]],
+    // latin extended and latin extended additional blocks
+    [
+        Script.RO,
+        [
+            'Roman',
+            'Roman',
+            [
+                [0x0000, 0x017f],
+                [0x1e00, 0x1eff],
+            ],
+            { f: 'uk_flag.png' },
+        ],
+    ],
+    // thai special letters are outside the range
+    [Script.THAI, ['Thai', 'ไทย', [[0x0e00, 0x0e7f], 0xf70f, 0xf700], { f: 'th_flag.png' }]],
+    [Script.LAOS, ['Laos', 'ລາວ', [[0x0e80, 0x0eff]], { f: 'laos_flag.png' }]],
+    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107f]], { f: 'my_flag.png' }]],
+    [Script.KM, ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17ff]], { f: 'kh_flag.png' }]],
+    [Script.BENG, ['Bengali', 'বাংলা', [[0x0980, 0x09ff]], { f: 'bangla_flag.png', g: 'indian' }]],
+    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0a00, 0x0a7f]], { g: 'indian' }]],
+    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0a80, 0x0aff]], { g: 'indian' }]],
+    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0c00, 0x0c7f]], { g: 'indian' }]],
+    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0c80, 0x0cff]], { g: 'indian' }]],
+    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0d00, 0x0d7f]], { g: 'indian' }]],
+    [Script.THAM, ['Tai Tham', 'Tai Tham LN', [[0x1a20, 0x1aaf]], { c: 'beta-script', g: 'other' }]],
+    // charCodeAt returns two codes for each letter [[0x11000, 0x1107F]]
+    [
+        Script.BRAH,
+        [
+            'Brahmi',
+            'Brāhmī',
+            [
+                [0xd804, 0xd804],
+                [0xdc00, 0xdc7f],
+            ],
+            { g: 'other' },
+        ],
+    ],
+    [Script.TIBT, ['Tibetan', 'བོད་སྐད།', [[0x0f00, 0x0fff]], { f: 'tibet_flag.png', c: 'larger', g: 'other' }]],
+    // also adding the "Combining Diacritical Marks" block
+    [
+        Script.CYRL,
+        [
+            'Cyrillic',
+            'кириллица',
+            [
+                [0x0400, 0x04ff],
+                [0x0300, 0x036f],
+            ],
+            { f: 'russia_flag.png', g: 'other' },
+        ],
+    ],
 ]);
 
 function getScriptForCode(charCode) {
-    for (let info of paliScriptInfo) {
-        for (let range of info[1][2]) {
+    for (const info of paliScriptInfo) {
+        for (const range of info[1][2]) {
             if (Array.isArray(range) && charCode >= range[0] && charCode <= range[1]) return info[0];
-            if (Number.isInteger(range) && charCode == range) return info[0];
+            if (Number.isInteger(range) && charCode === range) return info[0];
         }
     }
     return -1;
@@ -85,9 +126,13 @@ const specials = [
     ['ඌ', 'ऊ', 'ū', 'อู', 'ອູ', 'ဦ', 'ឩ', 'ঊ', 'ਊ', '\u1A50', 'ઊ', 'ఊ', 'ಊ', 'ഊ', '𑀊', 'ཨཱུ', 'ӯ'],
     ['එ', 'ए', 'e', 'อเ', 'ອເ', 'ဧ', 'ឯ', 'এ', 'ਏ', '\u1A51', 'એ', 'ఏ', 'ಏ', 'ഏ', '𑀏', 'ཨེ', 'е'],
     ['ඔ', 'ओ', 'o', 'อโ', 'ອໂ', 'ဩ', 'ឱ', 'ও', 'ਓ', '\u1A52', 'ઓ', 'ఓ', 'ಓ', 'ഓ', '𑀑', 'ཨོ', 'о'],
-    // various signs
-    ['ං', 'ं', 'ṃ', '\u0E4D', '\u0ECD', 'ံ', 'ំ', 'ং', 'ਂ', '\u1A74', 'ં', 'ం', 'ಂ', 'ം', '𑀁', '\u0F7E', 'м̣'], // niggahita - anusawara
-    // visarga - not in pali but deva original text has it (thai/lao/tt - not found. using the closest equivalent per wikipedia)
+    /*
+     * various signs
+     */
+    // niggahita - anusawara
+    ['ං', 'ं', 'ṃ', '\u0E4D', '\u0ECD', 'ံ', 'ំ', 'ং', 'ਂ', '\u1A74', 'ં', 'ం', 'ಂ', 'ം', '𑀁', '\u0F7E', 'м̣'],
+    // visarga - not in pali but deva original text has it
+    // (thai/lao/tt - not found. using the closest equivalent per wikipedia)
     ['ඃ', 'ः', 'ḥ', 'ะ', 'ະ', 'း', 'ះ', 'ঃ', 'ਃ', '\u1A61', 'ઃ', 'ః', 'ಃ', 'ഃ', '𑀂', '\u0F7F', 'х̣'],
     // virama (al - hal). roman/cyrillic need special handling
     ['්', '्', '', '\u0E3A', '\u0EBA', '္', '្', '্', '੍', '\u1A60', '્', '్', '್', '്', '\uD804\uDC46', '\u0F84', ''],
@@ -152,23 +197,32 @@ const vowels = [
     ['ී', 'ी', 'ī', '\u0E35', '\u0EB5', 'ီ', 'ី', 'ী', 'ੀ', '\u1A66', 'ી', 'ీ', 'ೀ', 'ീ', '𑀻', '\u0F71\u0F72', 'ӣ'],
     ['ු', 'ु', 'u', '\u0E38', '\u0EB8', 'ု', 'ុ', 'ু', 'ੁ', '\u1A69', 'ુ', 'ు', 'ು', 'ു', '𑀼', '\u0F74', 'у'],
     ['ූ', 'ू', 'ū', '\u0E39', '\u0EB9', 'ူ', 'ូ', 'ূ', 'ੂ', '\u1A6A', 'ૂ', 'ూ', 'ೂ', 'ൂ', '𑀽', '\u0F71\u0F74', 'ӯ'],
-    ['ෙ', 'े', 'e', 'เ', 'ເ', 'ေ', 'េ', 'ে', 'ੇ', '\u1A6E', 'ે', 'ే', 'ೇ', 'േ', '𑁂', '\u0F7A', 'е'], //for th/lo - should appear in front
-    ['ො', 'ो', 'o', 'โ', 'ໂ', 'ော', 'ោ', 'ো', 'ੋ', '\u1A6E\u1A63', 'ો', 'ో', 'ೋ', 'ോ', '𑁄', '\u0F7C', 'о'], //for th/lo - should appear in front
+    // for th/lo - should appear in front
+    ['ෙ', 'े', 'e', 'เ', 'ເ', 'ေ', 'េ', 'ে', 'ੇ', '\u1A6E', 'ે', 'ే', 'ೇ', 'േ', '𑁂', '\u0F7A', 'е'],
+    // for th/lo - should appear in front
+    ['ො', 'ो', 'o', 'โ', 'ໂ', 'ော', 'ោ', 'ো', 'ੋ', '\u1A6E\u1A63', 'ો', 'ో', 'ೋ', 'ോ', '𑁄', '\u0F7C', 'о'],
 ];
-const sinh_conso_range = 'ක-ෆ';
-const thai_conso_range = 'ก-ฮ';
-const lao_conso_range = 'ກ-ຮ';
-const mymr_conso_range = 'က-ဠ';
 
-function beautify_sinh(text, script, rendType = '') {
+export const sinh_conso_range = 'ක-ෆ';
+export const thai_conso_range = 'ก-ฮ';
+export const lao_conso_range = 'ກ-ຮ';
+export const mymr_conso_range = 'က-ဠ';
+
+function beautify_sinh(text, _script, _rendType = '') {
     // change joiners before U+0DBA Yayanna and U+0DBB Rayanna to Virama + ZWJ
     return text.replace(/\u0DCA([\u0DBA\u0DBB])/g, '\u0DCA\u200D$1');
 }
-function un_beautify_sinh(text) { // long vowels replaced by short vowels as sometimes people type long vowels by mistake
+
+// long vowels replaced by short vowels as sometimes people type long vowels by mistake
+function un_beautify_sinh(input) {
+    let text = input;
     text = text.replace(/ඒ/g, 'එ').replace(/ඕ/g, 'ඔ');
     return text.replace(/ේ/g, 'ෙ').replace(/ෝ/g, 'ො');
 }
-function beautify_mymr(text, script, rendType = '') { // new unicode 5.1 spec https://www.unicode.org/notes/tn11/UTN11_3.pdf
+
+// new unicode 5.1 spec https://www.unicode.org/notes/tn11/UTN11_3.pdf
+function beautify_mymr(input, _script, _rendType = '') {
+    let text = input;
     text = text.replace(/[,;]/g, '၊'); // comma/semicolon -> single line
     text = text.replace(/[\u2026\u0964\u0965]+/g, '။'); // ellipsis/danda/double danda -> double line
 
@@ -180,11 +234,14 @@ function beautify_mymr(text, script, rendType = '') { // new unicode 5.1 spec ht
     text = text.replace(/္ဝ/g, 'ွ'); // al + wa - wahswe
     text = text.replace(/္ဟ/g, 'ှ'); // al + ha - hahto
     // following code for tall aa is from https://www.facebook.com/pndaza.mlm
-    text = text.replace(/([ခဂငဒပဝ]ေ?)\u102c/g, "$1\u102b"); // aa to tall aa
-    text = text.replace(/(က္ခ|န္ဒ|ပ္ပ|မ္ပ)(ေ?)\u102b/g, "$1$2\u102c"); // restore back tall aa to aa for some pattern
-    return text.replace(/(ဒ္ဓ|ဒွ)(ေ?)\u102c/g, "$1\u102b");
+    text = text.replace(/([ခဂငဒပဝ]ေ?)\u102c/g, '$1\u102b'); // aa to tall aa
+    text = text.replace(/(က္ခ|န္ဒ|ပ္ပ|မ္ပ)(ေ?)\u102b/g, '$1$2\u102c'); // restore back tall aa to aa for some pattern
+    return text.replace(/(ဒ္ဓ|ဒွ)(ေ?)\u102c/g, '$1\u102b');
 }
-function un_beautify_mymr(text) {  // reverse of beautify above
+
+// reverse of beautify above
+function un_beautify_mymr(input) {
+    let text = input;
     text = text.replace(/\u102B/g, 'ာ');
     text = text.replace(/ှ/g, '္ဟ'); // al + ha - hahto
     text = text.replace(/ွ/g, '္ဝ'); // al + wa - wahswe
@@ -198,14 +255,18 @@ function un_beautify_mymr(text) {  // reverse of beautify above
     text = text.replace(/၊/g, ','); // single line -> comma
     return text.replace(/။/g, '.'); // double line -> period
 }
+
 /**
  * Each script need additional steps when rendering on screen
  * e.g. for sinh needs converting dandas/abbrev, removing spaces, and addition ZWJ
  */
-function beautify_common(text, script, rendType = '') {
-    if (rendType == 'cen') {  // remove double dandas around namo tassa
+function beautify_common(input, _script, rendType = '') {
+    let text = input;
+    if (rendType === 'cen') {
+        // remove double dandas around namo tassa
         text = text.replace(/॥/g, '');
-    } else if (rendType.startsWith('ga')) { // in gathas, single dandas convert to semicolon, double to period
+    } else if (rendType.startsWith('ga')) {
+        // in gathas, single dandas convert to semicolon, double to period
         text = text.replace(/।/g, ';');
         text = text.replace(/॥/g, '.');
     }
@@ -214,100 +275,130 @@ function beautify_common(text, script, rendType = '') {
     text = text.replace(/॰…/g, '…');
 
     text = text.replace(/॰/g, '·'); // abbre sign changed - prevent capitalization in notes
-    text = text.replace(/[।॥]/g, '.'); //all other single and double dandas converted to period
+    text = text.replace(/[।॥]/g, '.'); // all other single and double dandas converted to period
 
     // cleanup punctuation 1) two spaces to one
     // 2) There should be no spaces before these punctuation marks.
     text = text.replace(/\s([\s,!;\?\.])/g, '$1');
     return text;
 }
+
 // for roman text only
-function capitalize(text, script, rendType = '') {
+function capitalize(input, _script, _rendType = '') {
+    let text = input;
     // the adding of <w> tags around the words before the beautification makes it harder - (?:<w>)? added
-    text = text.replace(/^((?:<w>)?\S)/g, (_1, p1) => { // begining of a line
+    text = text.replace(/^((?:<w>)?\S)/g, (_1, p1) => {
+        // begining of a line
         return p1.toUpperCase();
     });
-    text = text.replace(/([\.\?]\s(?:<w>)?)(\S)/g, (_1, p1, p2) => { // beginning of sentence
+    text = text.replace(/([\.\?]\s(?:<w>)?)(\S)/g, (_1, p1, p2) => {
+        // beginning of sentence
         return `${p1}${p2.toUpperCase()}`;
     });
-    return text.replace(/([\u201C‘](?:<w>)?)(\S)/g, (_1, p1, p2) => { // starting from a quote
+    return text.replace(/([\u201C‘](?:<w>)?)(\S)/g, (_1, p1, p2) => {
+        // starting from a quote
         return `${p1}${p2.toUpperCase()}`;
     });
 }
+
 const un_capitalize = (text) => text.toLowerCase();
+
 // for thai text - this can also be done in the convert stage
-function swap_e_o(text, script, rendType = '') {
-    if (script == Script.THAI) {
+function swap_e_o(text, script, _rendType = '') {
+    if (script === Script.THAI) {
         return text.replace(/([ก-ฮ])([เโ])/g, '$2$1');
-    } else if (script == Script.LAOS) {
+    }
+
+    if (script === Script.LAOS) {
         return text.replace(/([ກ-ຮ])([ເໂ])/g, '$2$1');
     }
+
     throw new Error(`Unsupported script ${script} for swap_e_o method.`);
 }
+
 // to be used when converting from
 function un_swap_e_o(text, script) {
-    if (script == Script.THAI) {
+    if (script === Script.THAI) {
         return text.replace(/([เโ])([ก-ฮ])/g, '$2$1');
-    } else if (script == Script.LAOS) {
+    }
+
+    if (script === Script.LAOS) {
         return text.replace(/([ເໂ])([ກ-ຮ])/g, '$2$1');
     }
+
     throw new Error(`Unsupported script ${script} for un_swap_e_o method.`);
 }
+
 // in thai pali these two characters have special glyphs (using the encoding used in the THSarabunNew Font)
-function beautify_thai(text, script) {
+function beautify_thai(input, _script) {
+    let text = input;
     text = text.replace(/\u0E34\u0E4D/g, '\u0E36'); // 'iṃ' has a single unicode in thai
     text = text.replace(/ญ/g, '\uF70F');
     return text.replace(/ฐ/g, '\uF700');
 }
-function un_beautify_thai(text, script) {
+
+function un_beautify_thai(input, _script) {
+    let text = input;
     text = text.replace(/ฎ/g, 'ฏ'); // sometimes people use ฎ instead of the correct ฏ which is used in the tipitaka
     text = text.replace(/\u0E36/g, '\u0E34\u0E4D'); // 'iṃ' has a single unicode in thai which is split into two here
     text = text.replace(/\uF70F/g, 'ญ');
     return text.replace(/\uF700/g, 'ฐ');
 }
-function un_beautify_khmer(text, script) {
+
+function un_beautify_khmer(input, _script) {
+    let text = input;
     text = text.replace(/\u17B9/g, '\u17B7\u17C6'); // 'iṃ' has a single unicode in khmer which is split into two here
     return text.replace(/\u17D1/g, '\u17D2'); // end of word virama is different in khmer
 }
+
 /* zero-width joiners - replace both ways
 ['\u200C', ''], // ZWNJ (remove) not in sinh (or deva?)
-['\u200D', ''], // ZWJ (remove) will be added when displaying*/
+['\u200D', ''], // ZWJ (remove) will be added when displaying */
 function cleanup_zwj(inputText) {
     return inputText.replace(/\u200C|\u200D/g, '');
 }
 
-function beautify_brahmi(text) { // just replace deva danda with brahmi danda
-    text = text.replace(/।/g,'𑁇');
-    text = text.replace(/॥/g,'𑁈');
-    return text.replace(/–/g,'𑁋');
-}
-function beautify_tham(text) { // todo - unbeautify needed
-    text = text.replace(/\u1A60\u1A41/g, '\u1A55'); // medial ra - rakar
-    text = text.replace(/\u1A48\u1A60\u1A48/g,'\u1A54'); // great sa - ssa
-    text = text.replace(/।/g,'\u1AA8');
-    return text.replace(/॥/g,'\u1AA9');
+// just replace deva danda with brahmi danda
+function beautify_brahmi(input) {
+    let text = input;
+    text = text.replace(/।/g, '𑁇');
+    text = text.replace(/॥/g, '𑁈');
+    return text.replace(/–/g, '𑁋');
 }
 
-function beautify_tibet(text) { // copied form csharp - consider removing subjoined as it makes it hard to read
+// todo - unbeautify needed
+function beautify_tham(input) {
+    let text = input;
+    text = text.replace(/\u1A60\u1A41/g, '\u1A55'); // medial ra - rakar
+    text = text.replace(/\u1A48\u1A60\u1A48/g, '\u1A54'); // great sa - ssa
+    text = text.replace(/।/g, '\u1AA8');
+    return text.replace(/॥/g, '\u1AA9');
+}
+
+// copied form csharp - consider removing subjoined as it makes it hard to read
+function beautify_tibet(input) {
+    let text = input;
     // not adding the intersyllabic tsheg between "syllables" (done in csharp code) since no visible change
-    text = text.replace(/।/g,'།'); // tibet dandas
-    text = text.replace(/॥/g,'༎');
+    text = text.replace(/।/g, '།'); // tibet dandas
+    text = text.replace(/॥/g, '༎');
     // Iterate over all of the consonants, looking for tibetan halant + consonant.
     // Replace with the corresponding subjoined consonant (without halant)
-    for (let i = 0; i <= 39; i++) {
-        text = text.replace(new RegExp(String.fromCharCode(0x0F84, 0x0F40 + i), 'g'), String.fromCharCode(0x0F90 + i));
+    for (let i = 0; i <= 39; i += 1) {
+        text = text.replace(new RegExp(String.fromCharCode(0x0f84, 0x0f40 + i), 'g'), String.fromCharCode(0x0f90 + i));
     }
     // exceptions: yya and vva use the "fixed-form subjoined consonants as the 2nd one
-    text = text.replace(/\u0F61\u0FB1/g, '\u0F61\u0FBB'); //yya
-    text = text.replace(/\u0F5D\u0FAD/g, '\u0F5D\u0FBA'); //vva
+    text = text.replace(/\u0F61\u0FB1/g, '\u0F61\u0FBB'); // yya
+    text = text.replace(/\u0F5D\u0FAD/g, '\u0F5D\u0FBA'); // vva
 
     // exceptions: jjha, yha and vha use explicit (visible) halant between
-    text = text.replace(/\u0F5B\u0FAC/g, '\u0F5B\u0F84\u0F5C'); //jjha
-    text = text.replace(/\u0F61\u0FB7/g, '\u0F61\u0F84\u0F67'); //yha
-    return text.replace(/\u0F5D\u0FB7/g, '\u0F5D\u0F84\u0F67'); //vha
+    text = text.replace(/\u0F5B\u0FAC/g, '\u0F5B\u0F84\u0F5C'); // jjha
+    text = text.replace(/\u0F61\u0FB7/g, '\u0F61\u0F84\u0F67'); // yha
+    return text.replace(/\u0F5D\u0FB7/g, '\u0F5D\u0F84\u0F67'); // vha
 }
+
+// todo undo the subjoining done above
 function un_beautify_tibet(text) {
-    return text; // todo undo the subjoining done above
+    return text;
 }
 
 const beautify_func_default = [];
@@ -329,30 +420,37 @@ const beautify_func = {
 // when converting from another script, have to unbeautify before converting
 const un_beautify_func_default = [];
 const un_beautify_func = {
-    [Script.SI] : [cleanup_zwj, un_beautify_sinh],
-    [Script.HI] : [cleanup_zwj],   // original deva script (from tipitaka.org) text has zwj
+    [Script.SI]: [cleanup_zwj, un_beautify_sinh],
+    [Script.HI]: [cleanup_zwj], // original deva script (from tipitaka.org) text has zwj
     [Script.RO]: [un_capitalize],
     [Script.THAI]: [un_beautify_thai, un_swap_e_o],
     [Script.LAOS]: [un_swap_e_o],
     [Script.KM]: [un_beautify_khmer],
     [Script.MY]: [un_beautify_mymr],
     [Script.TIBT]: [un_beautify_tibet],
-}
+};
 
 function prepareHashMaps(fromIndex, toIndex, useVowels = true) {
-    let fullAr = consos.concat(specials, useVowels ? vowels : []), finalAr = [[], [], []]; //max 3
-    fullAr.forEach(val => {
-        if (val[fromIndex]) { // empty mapping - e.g in roman
+    const fullAr = consos.concat(specials, useVowels ? vowels : []);
+    const finalAr = [[], [], []]; // max 3
+    fullAr.forEach((val) => {
+        if (val[fromIndex]) {
+            // empty mapping - e.g in roman
             finalAr[val[fromIndex].length - 1].push([val[fromIndex], val[toIndex]]);
         }
     });
-    return finalAr.filter(ar => ar.length).map(ar => [ar[0][0].length, new Map(ar)]).reverse(); // longest is first
+    return finalAr
+        .filter((ar) => ar.length)
+        .map((ar) => [ar[0][0].length, new Map(ar)])
+        .reverse(); // longest is first
 }
+
 function replaceByMaps(inputText, hashMaps) {
-    let outputAr = new Array(), b = 0;
+    const outputAr = [];
+    let b = 0;
     while (b < inputText.length) {
         let match = false;
-        for (let [len, hashMap] of hashMaps) {
+        for (const [len, hashMap] of hashMaps) {
             const inChars = inputText.substr(b, len);
             if (hashMap.has(inChars)) {
                 outputAr.push(hashMap.get(inChars)); // note: can be empty string too
@@ -361,9 +459,10 @@ function replaceByMaps(inputText, hashMaps) {
                 break;
             }
         }
-        if (!match) { // did not match the hashmaps
+        if (!match) {
+            // did not match the hashmaps
             outputAr.push(inputText.charAt(b));
-            b++;
+            b += 1;
         }
     }
     return outputAr.join('');
@@ -371,83 +470,114 @@ function replaceByMaps(inputText, hashMaps) {
 
 // for roman/cyrl text - insert 'a' after all consonants that are not followed by virama, dependent vowel or 'a'
 // cyrillic mapping extracted from https://dhamma.ru/scripts/transdisp.js - TODO capitalize cyrl too
-function insert_a(text, script) {
-    const a = (script == Script.CYRL) ? '\u0430' : 'a'; // roman a or cyrl a
+function insert_a(input, script) {
+    const a = script === Script.CYRL ? '\u0430' : 'a'; // roman a or cyrl a
+    let text = input;
     text = text.replace(new RegExp(`([ක-ෆ])([^\u0DCF-\u0DDF\u0DCA${a}])`, 'g'), `$1${a}$2`);
     text = text.replace(new RegExp(`([ක-ෆ])([^\u0DCF-\u0DDF\u0DCA${a}])`, 'g'), `$1${a}$2`);
     return text.replace(/([ක-ෆ])$/g, `$1${a}`); // conso at the end of string not matched by regex above
 }
-const IV_TO_DV = {'අ': '', 'ආ': 'ා', 'ඉ': 'ි', 'ඊ': 'ී', 'උ': 'ු', 'ඌ': 'ූ', 'එ': 'ෙ', 'ඔ': 'ො'};
-function remove_a(text, script) {
+
+// eslint-disable-next-line prettier/prettier
+const IV_TO_DV = { 'අ': '', 'ආ': 'ා', 'ඉ': 'ි', 'ඊ': 'ී', 'උ': 'ු', 'ඌ': 'ූ', 'එ': 'ෙ', 'ඔ': 'ො' };
+
+function remove_a(input, _script) {
+    let text = input;
     text = text.replace(/([ක-ෆ])([^අආඉඊඋඌඑඔ\u0DCA])/g, '$1\u0DCA$2'); // done twice to match successive hal
     text = text.replace(/([ක-ෆ])([^අආඉඊඋඌඑඔ\u0DCA])/g, '$1\u0DCA$2');
     text = text.replace(/([ක-ෆ])$/g, '$1\u0DCA'); // last conso not matched by above
     text = text.replace(/([ක-ෆ])([අආඉඊඋඌඑඔ])/g, (_1, p1, p2) => p1 + IV_TO_DV[p2]);
     return text;
 }
+
 const fix_m_above = (text) => text.replace(/ṁ/g, 'ං'); // per ven anandajothi request
-
-const convert_to_func_default = [convert_to];
-const convert_to_func = {
-    [Script.SI] : [],
-    [Script.RO] : [insert_a, convert_to],
-    [Script.CYRL] : [insert_a, convert_to],
-}
-
-const convert_from_func_default = [convert_from];
-const convert_from_func = {
-    [Script.SI] : [],
-    [Script.RO] : [convert_from_w_v, fix_m_above, remove_a],
-    [Script.CYRL] : [convert_from_w_v, remove_a],
-}
 
 function convert_to(text, script) {
     const hashMaps = prepareHashMaps(script_index[Script.SI], script_index[script]);
     return replaceByMaps(text, hashMaps);
 }
+
 function convert_from(text, script) {
-    const hashMaps = prepareHashMaps(script_index[script], script_index[Script.SI]); // TODO create maps initially and reuse them
-    //console.log(hashMaps);
+    // TODO create maps initially and reuse them
+    const hashMaps = prepareHashMaps(script_index[script], script_index[Script.SI]);
+    // console.log(hashMaps);
     return replaceByMaps(text, hashMaps);
 }
+
 function convert_from_w_v(text, script) {
     const hashMaps = prepareHashMaps(script_index[script], script_index[Script.SI], false); // without vowels for roman
     return replaceByMaps(text, hashMaps);
 }
 
+const convert_to_func_default = [convert_to];
+const convert_to_func = {
+    [Script.SI]: [],
+    [Script.RO]: [insert_a, convert_to],
+    [Script.CYRL]: [insert_a, convert_to],
+};
+
+const convert_from_func_default = [convert_from];
+const convert_from_func = {
+    [Script.SI]: [],
+    [Script.RO]: [convert_from_w_v, fix_m_above, remove_a],
+    [Script.CYRL]: [convert_from_w_v, remove_a],
+};
+
 class TextProcessor {
     // convert from sinhala to another script
-    static basicConvert(text, script) {
-        (convert_to_func[script] || convert_to_func_default).forEach(func => text = func(text, script));
+    static basicConvert(input, script) {
+        let text = input;
+        (convert_to_func[script] || convert_to_func_default).forEach((func) => {
+            text = func(text, script);
+        });
         return text;
     }
+
     // convert from another script to sinhala
-    static basicConvertFrom(text, script) {
-        (convert_from_func[script] || convert_from_func_default).forEach(func => text = func(text, script));
+    static basicConvertFrom(input, script) {
+        let text = input;
+        (convert_from_func[script] || convert_from_func_default).forEach((func) => {
+            text = func(text, script);
+        });
         return text;
     }
+
     // script specific beautification
-    static beautify(text, script, rendType = '') {
-        (beautify_func[script] || beautify_func_default).forEach(func => text = func(text, script, rendType));
+    static beautify(input, script, rendType = '') {
+        let text = input;
+        (beautify_func[script] || beautify_func_default).forEach((func) => {
+            text = func(text, script, rendType);
+        });
         return text;
     }
+
     // from Sinhala to other script
-    static convert(text, script) {
+    static convert(input, script) {
+        let text = input;
         text = this.basicConvert(text, script);
         return this.beautify(text, script);
     }
+
     // from other script to Sinhala - one script
-    static convertFrom(text, script) {
-        (un_beautify_func[script] || un_beautify_func_default).forEach(func => text = func(text, script));
+    static convertFrom(input, script) {
+        let text = input;
+        (un_beautify_func[script] || un_beautify_func_default).forEach((func) => {
+            text = func(text, script);
+        });
         return this.basicConvertFrom(text, script);
     }
+
     // from other scripts (mixed) to Sinhala
-    static convertFromMixed(mixedText) {
-        mixedText = cleanup_zwj(mixedText) + ' '; // zwj messes with computing runs + hack to process last char
-        let curScript = -1, run = '', output = '';
-        for(let i = 0; i < mixedText.length; i++) {
+    static convertFromMixed(input) {
+        let mixedText = input;
+        mixedText = `${cleanup_zwj(mixedText)} `; // zwj messes with computing runs + hack to process last char
+        let curScript = -1;
+        let run = '';
+        let output = '';
+        for (let i = 0; i < mixedText.length; i += 1) {
             const newScript = getScriptForCode(mixedText.charCodeAt(i));
-            if (newScript != curScript || (i == mixedText.length - 1)) { // make sure to process the last run
+            if (newScript !== curScript || i === mixedText.length - 1) {
+                // make sure to process the last run
                 output += this.convertFrom(run, curScript);
                 curScript = newScript;
                 run = mixedText.charAt(i);
@@ -455,154 +585,11 @@ class TextProcessor {
                 run += mixedText.charAt(i);
             }
         }
-        //console.log(`convert from mixed: "${mixedText}" => "${output}"`);
+
+        // console.log(`convert from mixed: "${mixedText}" => "${output}"`);
         return output;
     }
 }
 
 // for es6 - browser
-export {TextProcessor, Script, paliScriptInfo, getScriptForCode};
-
-// for node
-//module.exports = {TextProcessor: TextProcessor, Script: Script};
-/*
-let testDev = '॥ नमो तस्स भगवतो अरहतो सम्मासम्बुद्धस्स॥ දක්ඛිණා';
-let testMaps = 'akappiyapathavīsaṅkhyā';
-console.log(TextProcessor.convertFrom(testMaps, Script.RO));
-let testSinh = 'ආබොග';
-testSinh = TextProcessor.convert(testSinh, Script.MY);
-//console.log(testSinh);
-//console.log(TextProcessor.convertFrom(testSinh, Script.MY));
-//const assert = require('assert');
-import assert from 'assert';
-function errorCheckMapping() {
-    const num_scripts = Object.keys(script_index).length;
-    consos.concat(specials, vowels).forEach(ar => {
-        assert(ar.length == num_scripts, `${ar} length not ${num_scripts}`);
-        ar.forEach((ch, i) => {
-            if (ch) {
-                const spt = getScriptForCode(ch.charCodeAt(0));
-                // sinhala digits are in roman range - hence the isNan check
-                assert(script_index[spt] == i || !isNaN(ch), `char ${ch} code ${ch.charCodeAt(0)} not within the range for script ${spt}`);
-            }
-        });
-        const uniq = ar.filter((v, i, a) => a.indexOf(v) === i);
-        if (uniq.length != ar.length && isNaN(ar[0])) console.log(`duplicates in mapping: ${ar} : ${uniq}`);
-    });
-}
-errorCheckMapping();
-*/
-
-
-/*
-    else if (ccode >= 0x0F00 && ccode <= 0x0FFF)
-        script = Script.Tibetan;
-        script = Script.Latin;
-
-function prepareHashMap(fromIndex, toIndex) {
-    let fullAr = consos.concat(specials, vowels), finalAr = [];
-    fullAr.forEach(val => {
-        if (val[fromIndex]) { // empty mapping
-            finalAr.push([val[fromIndex], val[toIndex]]);
-        }
-    });
-    return new Map(finalAr);
-}
-function replaceByMap(inputText, hashMap) {
-    inputText = cleanup_zwj(inputText);
-    let oldChar = '', outputAr = new Array(inputText.length);
-    for (let i = 0; i < inputText.length; i++) {
-        oldChar = inputText.charAt(i);
-        if (hashMap.has(oldChar)) {
-            outputAr[i] = hashMap.get(oldChar); // note: can be empty string too
-        } else {
-            outputAr[i] = oldChar;
-        }
-    }
-    return outputAr.join('');
-}
-
-const deva_specials = [
-    ['\u0D82','\u0902'], // niggahita - anusawara
-    ['\u0D83','\u0903'], // visarga - not in pali but deva original text has it
-
-    // independent vowels
-    ['\u0D85','\u0905'], // a
-    ['\u0D86','\u0906'], // aa
-    ['\u0D89','\u0907'], // i
-    ['\u0D8A','\u0908'], // ii
-    ['\u0D8B','\u0909'], // u
-    ['\u0D8C','\u090A'], // uu
-    ['\u0D91','\u090F'], // e
-    ['\u0D94','\u0913'], // o
-
-    // various signs
-    ['\u0DCA','\u094D'], // Sinhala virama -> Dev. virama (al - hal)
-
-    // digits
-    ['0', '\u0966'],
-    ['1', '\u0967'],
-    ['2', '\u0968'],
-    ['3', '\u0969'],
-    ['4', '\u096A'],
-    ['5', '\u096B'],
-    ['6', '\u096C'],
-    ['7', '\u096D'],
-    ['8', '\u096E'],
-    ['9', '\u096F'],
-];*/
-/*const deva_conso = [
-    // velar stops
-    ['\u0D9A','\u0915'], // ka
-    ['\u0D9B','\u0916'], // kha
-    ['\u0D9C','\u0917'], // ga
-    ['\u0D9D','\u0918'], // gha
-    ['\u0D9E','\u0919'], // n overdot a
-
-    // palatal stops
-    ['\u0DA0','\u091A'], // ca
-    ['\u0DA1','\u091B'], // cha
-    ['\u0DA2','\u091C'], // ja
-    ['\u0DA3','\u091D'], // jha
-    ['\u0DA4','\u091E'], // �a
-
-    // retroflex stops
-    ['\u0DA7','\u091F'], // t underdot a
-    ['\u0DA8','\u0920'], // t underdot ha
-    ['\u0DA9','\u0921'], // d underdot a
-    ['\u0DAA','\u0922'], // d underdot ha
-    ['\u0DAB','\u0923'], // n underdot a
-
-    // dental stops
-    ['\u0DAD','\u0924'], // ta
-    ['\u0DAE','\u0925'], // tha
-    ['\u0DAF','\u0926'], // da
-    ['\u0DB0','\u0927'], // dha
-    ['\u0DB1','\u0928'], // na
-
-    // labial stops
-    ['\u0DB4','\u092A'], // pa
-    ['\u0DB5','\u092B'], // pha
-    ['\u0DB6','\u092C'], // ba
-    ['\u0DB7','\u092D'], // bha
-    ['\u0DB8','\u092E'], // ma
-
-    // liquids, fricatives, etc.
-    ['\u0DBA','\u092F'], // ya
-    ['\u0DBB','\u0930'], // ra
-    ['\u0DBD','\u0932'], // la
-    ['\u0DC0','\u0935'], // va
-    ['\u0DC3','\u0938'], // sa
-    ['\u0DC4','\u0939'], // ha
-    ['\u0DC5','\u0933'], // l underdot a
-];*/
-/*const deva_vowels = [
-    // dependent vowel signs
-    ['\u0DCF','\u093E'], // aa
-    ['\u0DD2','\u093F'], // i
-    ['\u0DD3','\u0940'], // ii
-    ['\u0DD4','\u0941'], // u
-    ['\u0DD6','\u0942'], // uu
-    ['\u0DD9','\u0947'], // e
-    ['\u0DDC','\u094B'], // o
-];*/
+export { TextProcessor, Script, paliScriptInfo, getScriptForCode };
