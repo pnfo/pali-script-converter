@@ -4,11 +4,9 @@ const yargs = require('yargs');
 
 const { env } = yargs.argv; // use --env with webpack 2
 
-const pkg = require('./package.json');
-
 const shouldExportToAMD = yargs.argv.amd;
 
-let libraryName = pkg.name.split('/').reverse()[0];
+let libraryName = 'index';
 
 let outputFile;
 let mode;
