@@ -33,61 +33,88 @@ const Script = Object.freeze({
 
 // Locale TLAs from https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
 const PaliScriptInfo = new Map([
-    [Script.SI, ['Sinhala', 'සිංහල', [[0x0d80, 0x0dff]], { f: 'sl_flag.png', locale: 'si' }]],
-    [Script.HI, ['Devanagari', 'हिन्दी', [[0x0900, 0x097f]], { f: 'in_flag.png', locale: 'hi' }]],
+    [Script.SI, ['Sinhala', 'සිංහල', [[0x0d80, 0x0dff]], { f: 'sl_flag.png', locale: 'si', localeName: 'සිංහල' }]],
+    [Script.HI, ['Devanagari', 'नागरी', [[0x0900, 0x097f]], { f: 'in_flag.png', locale: 'hi', localeName: 'हिन्दी' }]],
     // latin extended and latin extended additional blocks
     [
         Script.RO,
         [
             'Roman',
-            'English',
+            'Roman',
             [
                 [0x0000, 0x017f],
                 [0x1e00, 0x1eff],
             ],
-            { f: 'uk_flag.png', locale: 'en' },
+            { f: 'uk_flag.png', locale: 'en', localeName: 'English' },
         ],
     ],
     // thai special letters are outside the range
-    [Script.THAI, ['Thai', 'ไทย', [[0x0e00, 0x0e7f], 0xf70f, 0xf700], { f: 'th_flag.png', locale: 'th' }]],
-    [Script.LAOS, ['Laos', 'ລາວ', [[0x0e80, 0x0eff]], { f: 'laos_flag.png', locale: 'lo' }]],
-    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107f]], { f: 'my_flag.png', locale: 'my' }]],
-    [Script.KM, ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17ff]], { f: 'kh_flag.png', locale: 'km' }]],
-    [Script.BENG, ['Bengali', 'বাংলা', [[0x0980, 0x09ff]], { f: 'bangla_flag.png', locale: 'bn', g: 'indian' }]],
-    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0a00, 0x0a7f]], { locale: 'pa', g: 'indian' }]],
-    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0a80, 0x0aff]], { locale: 'gu', g: 'indian' }]],
-    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0c00, 0x0c7f]], { locale: 'te', g: 'indian' }]],
-    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0c80, 0x0cff]], { locale: 'kn', g: 'indian' }]],
-    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0d00, 0x0d7f]], { locale: 'ml', g: 'indian' }]],
-    [Script.THAM, ['Tai Tham', 'ไทย (Lana)', [[0x1a20, 0x1aaf]], { locale: 'th', c: 'beta-script', g: 'other' }]],
+    [
+        Script.THAI,
+        ['Thai', 'ไทย', [[0x0e00, 0x0e7f], 0xf70f, 0xf700], { f: 'th_flag.png', locale: 'th', localeName: 'ไทย' }],
+    ],
+    [Script.LAOS, ['Laos', 'ລາວ', [[0x0e80, 0x0eff]], { f: 'laos_flag.png', locale: 'lo', localeName: 'ລາວ' }]],
+    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107f]], { f: 'my_flag.png', locale: 'my', localeName: 'ဗမာစာ' }]],
+    [
+        Script.KM,
+        ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17ff]], { f: 'kh_flag.png', locale: 'km', localeName: 'ភាសាខ្មែរ' }],
+    ],
+    [
+        Script.BENG,
+        [
+            'Bengali',
+            'বাংলা',
+            [[0x0980, 0x09ff]],
+            { f: 'bangla_flag.png', locale: 'bn', localeName: 'বাংলা', g: 'indian' },
+        ],
+    ],
+    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0a00, 0x0a7f]], { locale: 'pa', localeName: 'ਪੰਜਾਬੀ', g: 'indian' }]],
+    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0a80, 0x0aff]], { locale: 'gu', localeName: 'ગુજરાતી', g: 'indian' }]],
+    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0c00, 0x0c7f]], { locale: 'te', localeName: 'తెలుగు', g: 'indian' }]],
+    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0c80, 0x0cff]], { locale: 'kn', localeName: 'ಕನ್ನಡ', g: 'indian' }]],
+    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0d00, 0x0d7f]], { locale: 'ml', localeName: 'മലയാളം', g: 'indian' }]],
+    [
+        Script.THAM,
+        [
+            'Tai Tham',
+            'Tai Tham LN',
+            [[0x1a20, 0x1aaf]],
+            { locale: 'th', localeName: 'ไทย (Lana)', c: 'beta-script', g: 'other' },
+        ],
+    ],
     // charCodeAt returns two codes for each letter [[0x11000, 0x1107F]]
     [
         Script.BRAH,
         [
             'Brahmi',
-            'हिन्दी (Brah)',
+            'Brāhmī',
             [
                 [0xd804, 0xd804],
                 [0xdc00, 0xdc7f],
             ],
-            { locale: 'hi', g: 'other' },
+            { locale: 'hi', localeName: 'हिन्दी (Brah)', g: 'other' },
         ],
     ],
     [
         Script.TIBT,
-        ['Tibetan', 'བོད་སྐད།', [[0x0f00, 0x0fff]], { f: 'tibet_flag.png', c: 'larger', locale: 'bo', g: 'other' }],
+        [
+            'Tibetan',
+            'བོད་སྐད།',
+            [[0x0f00, 0x0fff]],
+            { f: 'tibet_flag.png', c: 'larger', locale: 'bo', localeName: 'བོད་སྐད།', g: 'other' },
+        ],
     ],
     // also adding the "Combining Diacritical Marks" block
     [
         Script.CYRL,
         [
             'Cyrillic',
-            'ру́сский',
+            'кириллица',
             [
                 [0x0400, 0x04ff],
                 [0x0300, 0x036f],
             ],
-            { f: 'russia_flag.png', locale: 'ru', g: 'other' },
+            { f: 'russia_flag.png', locale: 'ru', localeName: 'ру́сский', g: 'other' },
         ],
     ],
 ]);

@@ -40,21 +40,26 @@ export const Script: Readonly<{
 export const PaliScriptInfo: Map<string, (string | (number | number[])[] | {
     f: string;
     locale: string;
+    localeName: string;
 })[] | (string | number[][] | {
     f: string;
     locale: string;
+    localeName: string;
     g: string;
 })[] | (string | number[][] | {
     locale: string;
+    localeName: string;
     g: string;
 })[] | (string | number[][] | {
     locale: string;
+    localeName: string;
     c: string;
     g: string;
 })[] | (string | number[][] | {
     f: string;
     c: string;
     locale: string;
+    localeName: string;
     g: string;
 })[]>;
 export function getScriptForCode(charCode: any): any;
