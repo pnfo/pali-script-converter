@@ -1,3 +1,6 @@
+export const ScriptIndex: {
+    [x: string]: number;
+};
 export const sinh_conso_range: "ක-ෆ";
 export const thai_conso_range: "ก-ฮ";
 export const lao_conso_range: "ກ-ຮ";
@@ -34,19 +37,24 @@ export const Script: Readonly<{
     TIBT: string;
     CYRL: string;
 }>;
-export const paliScriptInfo: Map<string, (string | (number | number[])[] | {
+export const PaliScriptInfo: Map<string, (string | (number | number[])[] | {
     f: string;
+    locale: string;
 })[] | (string | number[][] | {
     f: string;
+    locale: string;
     g: string;
 })[] | (string | number[][] | {
+    locale: string;
     g: string;
 })[] | (string | number[][] | {
+    locale: string;
     c: string;
     g: string;
 })[] | (string | number[][] | {
     f: string;
     c: string;
+    locale: string;
     g: string;
 })[]>;
 export function getScriptForCode(charCode: any): any;

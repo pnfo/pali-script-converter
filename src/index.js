@@ -1,3 +1,3 @@
-import { Script, TextProcessor, getScriptForCode, paliScriptInfo } from './pali-script';
+import { Script, TextProcessor, getScriptForCode, PaliScriptInfo, ScriptIndex } from './pali-script';
 
-export default { Script, TextProcessor, getScriptForCode, paliScriptInfo };
+export default { Script, TextProcessor, getScriptForCode, PaliScriptInfo, ScriptIndex };

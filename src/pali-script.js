@@ -10,85 +10,90 @@
  * Permission from the auther is required for all other purposes.
  */
 
+// https://en.wikipedia.org/wiki/ISO_15924
 const Script = Object.freeze({
-    SI: 'si',
-    HI: 'hi',
-    RO: 'ro',
-    THAI: 'th',
-    LAOS: 'lo',
-    MY: 'my',
-    KM: 'km',
-    BENG: 'be',
-    GURM: 'gm',
-    THAM: 'tt',
-    GUJA: 'gj',
-    TELU: 'te',
-    KANN: 'ka',
-    MALA: 'mm',
-    BRAH: 'br',
-    TIBT: 'tb',
-    CYRL: 'cy',
+    SI: 'Sinh',
+    HI: 'Deva',
+    RO: 'Latn',
+    THAI: 'Thai',
+    LAOS: 'Laoo',
+    MY: 'Mymr',
+    KM: 'Khmr',
+    BENG: 'Beng',
+    GURM: 'Guru',
+    THAM: 'Lana',
+    GUJA: 'Gujr',
+    TELU: 'Telu',
+    KANN: 'Knda',
+    MALA: 'Mlym',
+    BRAH: 'Brah',
+    TIBT: 'Tibt',
+    CYRL: 'Cyrl',
 });
 
-const paliScriptInfo = new Map([
-    [Script.SI, ['Sinhala', 'සිංහල', [[0x0d80, 0x0dff]], { f: 'sl_flag.png' }]],
-    [Script.HI, ['Devanagari', 'हिन्दी', [[0x0900, 0x097f]], { f: 'in_flag.png' }]],
+// Locale TLAs from https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+const PaliScriptInfo = new Map([
+    [Script.SI, ['Sinhala', 'සිංහල', [[0x0d80, 0x0dff]], { f: 'sl_flag.png', locale: 'si' }]],
+    [Script.HI, ['Devanagari', 'हिन्दी', [[0x0900, 0x097f]], { f: 'in_flag.png', locale: 'hi' }]],
     // latin extended and latin extended additional blocks
     [
         Script.RO,
         [
             'Roman',
-            'Roman',
+            'English',
             [
                 [0x0000, 0x017f],
                 [0x1e00, 0x1eff],
             ],
-            { f: 'uk_flag.png' },
+            { f: 'uk_flag.png', locale: 'en' },
         ],
     ],
     // thai special letters are outside the range
-    [Script.THAI, ['Thai', 'ไทย', [[0x0e00, 0x0e7f], 0xf70f, 0xf700], { f: 'th_flag.png' }]],
-    [Script.LAOS, ['Laos', 'ລາວ', [[0x0e80, 0x0eff]], { f: 'laos_flag.png' }]],
-    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107f]], { f: 'my_flag.png' }]],
-    [Script.KM, ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17ff]], { f: 'kh_flag.png' }]],
-    [Script.BENG, ['Bengali', 'বাংলা', [[0x0980, 0x09ff]], { f: 'bangla_flag.png', g: 'indian' }]],
-    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0a00, 0x0a7f]], { g: 'indian' }]],
-    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0a80, 0x0aff]], { g: 'indian' }]],
-    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0c00, 0x0c7f]], { g: 'indian' }]],
-    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0c80, 0x0cff]], { g: 'indian' }]],
-    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0d00, 0x0d7f]], { g: 'indian' }]],
-    [Script.THAM, ['Tai Tham', 'Tai Tham LN', [[0x1a20, 0x1aaf]], { c: 'beta-script', g: 'other' }]],
+    [Script.THAI, ['Thai', 'ไทย', [[0x0e00, 0x0e7f], 0xf70f, 0xf700], { f: 'th_flag.png', locale: 'th' }]],
+    [Script.LAOS, ['Laos', 'ລາວ', [[0x0e80, 0x0eff]], { f: 'laos_flag.png', locale: 'lo' }]],
+    [Script.MY, ['Myanmar', 'ဗမာစာ', [[0x1000, 0x107f]], { f: 'my_flag.png', locale: 'my' }]],
+    [Script.KM, ['Khmer', 'ភាសាខ្មែរ', [[0x1780, 0x17ff]], { f: 'kh_flag.png', locale: 'km' }]],
+    [Script.BENG, ['Bengali', 'বাংলা', [[0x0980, 0x09ff]], { f: 'bangla_flag.png', locale: 'bn', g: 'indian' }]],
+    [Script.GURM, ['Gurmukhi', 'ਗੁਰਮੁਖੀ', [[0x0a00, 0x0a7f]], { locale: 'pa', g: 'indian' }]],
+    [Script.GUJA, ['Gujarati', 'ગુજરાતી', [[0x0a80, 0x0aff]], { locale: 'gu', g: 'indian' }]],
+    [Script.TELU, ['Telugu', 'తెలుగు', [[0x0c00, 0x0c7f]], { locale: 'te', g: 'indian' }]],
+    [Script.KANN, ['Kannada', 'ಕನ್ನಡ', [[0x0c80, 0x0cff]], { locale: 'kn', g: 'indian' }]],
+    [Script.MALA, ['Malayalam', 'മലയാളം', [[0x0d00, 0x0d7f]], { locale: 'ml', g: 'indian' }]],
+    [Script.THAM, ['Tai Tham', 'ไทย (Lana)', [[0x1a20, 0x1aaf]], { locale: 'th', c: 'beta-script', g: 'other' }]],
     // charCodeAt returns two codes for each letter [[0x11000, 0x1107F]]
     [
         Script.BRAH,
         [
             'Brahmi',
-            'Brāhmī',
+            'हिन्दी (Brah)',
             [
                 [0xd804, 0xd804],
                 [0xdc00, 0xdc7f],
             ],
-            { g: 'other' },
+            { locale: 'hi', g: 'other' },
         ],
     ],
-    [Script.TIBT, ['Tibetan', 'བོད་སྐད།', [[0x0f00, 0x0fff]], { f: 'tibet_flag.png', c: 'larger', g: 'other' }]],
+    [
+        Script.TIBT,
+        ['Tibetan', 'བོད་སྐད།', [[0x0f00, 0x0fff]], { f: 'tibet_flag.png', c: 'larger', locale: 'bo', g: 'other' }],
+    ],
     // also adding the "Combining Diacritical Marks" block
     [
         Script.CYRL,
         [
             'Cyrillic',
-            'кириллица',
+            'ру́сский',
             [
                 [0x0400, 0x04ff],
                 [0x0300, 0x036f],
             ],
-            { f: 'russia_flag.png', g: 'other' },
+            { f: 'russia_flag.png', locale: 'ru', g: 'other' },
         ],
     ],
 ]);
 
 function getScriptForCode(charCode) {
-    for (const info of paliScriptInfo) {
+    for (const info of PaliScriptInfo) {
         for (const range of info[1][2]) {
             if (Array.isArray(range) && charCode >= range[0] && charCode <= range[1]) return info[0];
             if (Number.isInteger(range) && charCode === range) return info[0];
@@ -97,7 +102,7 @@ function getScriptForCode(charCode) {
     return -1;
 }
 
-const script_index = {
+export const ScriptIndex = {
     [Script.SI]: 0,
     [Script.HI]: 1,
     [Script.RO]: 2,
@@ -116,6 +121,7 @@ const script_index = {
     [Script.TIBT]: 15,
     [Script.CYRL]: 16,
 };
+
 const specials = [
     // independent vowels
     ['අ', 'अ', 'a', 'อ', 'ອ', 'အ', 'អ', 'অ', 'ਅ', '\u1A4B', 'અ', 'అ', 'ಅ', 'അ', '𑀅', 'ཨ', 'а'],
@@ -493,19 +499,19 @@ function remove_a(input, _script) {
 const fix_m_above = (text) => text.replace(/ṁ/g, 'ං'); // per ven anandajothi request
 
 function convert_to(text, script) {
-    const hashMaps = prepareHashMaps(script_index[Script.SI], script_index[script]);
+    const hashMaps = prepareHashMaps(ScriptIndex[Script.SI], ScriptIndex[script]);
     return replaceByMaps(text, hashMaps);
 }
 
 function convert_from(text, script) {
     // TODO create maps initially and reuse them
-    const hashMaps = prepareHashMaps(script_index[script], script_index[Script.SI]);
+    const hashMaps = prepareHashMaps(ScriptIndex[script], ScriptIndex[Script.SI]);
     // console.log(hashMaps);
     return replaceByMaps(text, hashMaps);
 }
 
 function convert_from_w_v(text, script) {
-    const hashMaps = prepareHashMaps(script_index[script], script_index[Script.SI], false); // without vowels for roman
+    const hashMaps = prepareHashMaps(ScriptIndex[script], ScriptIndex[Script.SI], false); // without vowels for roman
     return replaceByMaps(text, hashMaps);
 }
 
@@ -592,4 +598,4 @@ class TextProcessor {
 }
 
 // for es6 - browser
-export { TextProcessor, Script, paliScriptInfo, getScriptForCode };
+export { TextProcessor, Script, PaliScriptInfo, getScriptForCode };
