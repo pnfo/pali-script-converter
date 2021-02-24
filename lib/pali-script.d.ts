@@ -6,11 +6,11 @@ export const thai_conso_range: "ก-ฮ";
 export const lao_conso_range: "ກ-ຮ";
 export const mymr_conso_range: "က-ဠ";
 export class TextProcessor {
-    static basicConvert(input: any, script: any): any;
-    static basicConvertFrom(input: any, script: any): any;
+    static basicConvertFromSinh(input: any, script: any): any;
+    static basicConvertToSinh(input: any, script: any): any;
     static beautify(input: any, script: any, rendType?: string): any;
-    static convert(input: any, script: any): any;
-    static convertFrom(input: any, script: any): any;
+    static convertFromSinh(input: any, script: any): any;
+    static convertToSinh(input: any, script: any): any;
     static convertFromMixed(input: any): string;
 }
 /**

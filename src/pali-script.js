@@ -79,7 +79,7 @@ const PaliScriptInfo = new Map([
             'Tai Tham',
             'Tai Tham LN',
             [[0x1a20, 0x1aaf]],
-            { locale: 'th', localeName: 'ไทย (Lana)', c: 'beta-script', g: 'other' },
+            { locale: 'th', localeName: 'ไทย (Lanna)', c: 'beta-script', g: 'other' },
         ],
     ],
     // charCodeAt returns two codes for each letter [[0x11000, 0x1107F]]
@@ -558,7 +558,7 @@ const convert_from_func = {
 
 class TextProcessor {
     // convert from sinhala to another script
-    static basicConvert(input, script) {
+    static basicConvertFromSinh(input, script) {
         let text = input;
         (convert_to_func[script] || convert_to_func_default).forEach((func) => {
             text = func(text, script);
@@ -567,7 +567,7 @@ class TextProcessor {
     }
 
     // convert from another script to sinhala
-    static basicConvertFrom(input, script) {
+    static basicConvertToSinh(input, script) {
         let text = input;
         (convert_from_func[script] || convert_from_func_default).forEach((func) => {
             text = func(text, script);
@@ -585,19 +585,19 @@ class TextProcessor {
     }
 
     // from Sinhala to other script
-    static convert(input, script) {
+    static convertFromSinh(input, script) {
         let text = input;
-        text = this.basicConvert(text, script);
+        text = this.basicConvertFromSinh(text, script);
         return this.beautify(text, script);
     }
 
     // from other script to Sinhala - one script
-    static convertFrom(input, script) {
+    static convertToSinh(input, script) {
         let text = input;
         (un_beautify_func[script] || un_beautify_func_default).forEach((func) => {
             text = func(text, script);
         });
-        return this.basicConvertFrom(text, script);
+        return this.basicConvertToSinh(text, script);
     }
 
     // from other scripts (mixed) to Sinhala
@@ -611,7 +611,7 @@ class TextProcessor {
             const newScript = getScriptForCode(mixedText.charCodeAt(i));
             if (newScript !== curScript || i === mixedText.length - 1) {
                 // make sure to process the last run
-                output += this.convertFrom(run, curScript);
+                output += this.convertToSinh(run, curScript);
                 curScript = newScript;
                 run = mixedText.charAt(i);
             } else {

@@ -119,7 +119,7 @@ const testCases = [
 describe('check conversion to SI', () => {
     testCases.forEach(({ lang, langStr, siStr }) => {
         it(`from ${lang}`, () => {
-            const actual = PS.TextProcessor.convertFrom(langStr, lang);
+            const actual = PS.TextProcessor.convertToSinh(langStr, lang);
             expect(actual).toEqual(siStr);
         });
     });
@@ -128,7 +128,7 @@ describe('check conversion to SI', () => {
 describe('check conversion from SI', () => {
     testCases.forEach(({ lang, langStr, siStr }) => {
         it(`to ${lang}`, () => {
-            const actual = PS.TextProcessor.convert(siStr, lang);
+            const actual = PS.TextProcessor.convertFromSinh(siStr, lang);
             expect(actual).toEqual(langStr);
         });
     });
