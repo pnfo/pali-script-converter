@@ -11,7 +11,7 @@ export class TextProcessor {
     static beautify(input: any, script: any, rendType?: string): any;
     static convertFromSinh(input: any, script: any): any;
     static convertToSinh(input: any, script: any): any;
-    static convertFromMixed(input: any): string;
+    static convertAnyToSinh(input: any): string;
 }
 /**
  * Copyright Path Nirvana 2018

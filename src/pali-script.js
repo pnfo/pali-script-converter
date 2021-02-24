@@ -601,7 +601,7 @@ class TextProcessor {
     }
 
     // from other scripts (mixed) to Sinhala
-    static convertFromMixed(input) {
+    static convertAnyToSinh(input) {
         let mixedText = input;
         mixedText = `${cleanup_zwj(mixedText)} `; // zwj messes with computing runs + hack to process last char
         let curScript = -1;

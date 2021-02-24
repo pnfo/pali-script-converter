@@ -1,5 +1,11 @@
 import { Script, TextProcessor, getScriptForCode, PaliScriptInfo, ScriptIndex } from './pali-script';
-import { convert, getLocaleForScript, getLocaleNameForScript, getSupportedLocales } from './pali-script-extensions';
+import {
+    convert,
+    convertAny,
+    getLocaleForScript,
+    getLocaleNameForScript,
+    getSupportedLocales,
+} from './pali-script-extensions';
 
 export default {
     Script,
@@ -8,6 +14,7 @@ export default {
     PaliScriptInfo,
     ScriptIndex,
     convert,
+    convertAny,
     getLocaleForScript,
     getLocaleNameForScript,
     getSupportedLocales,

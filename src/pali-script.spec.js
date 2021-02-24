@@ -125,6 +125,15 @@ describe('check conversion to SI', () => {
     });
 });
 
+describe('check conversion from any to SI', () => {
+    testCases.forEach(({ langStr, siStr }) => {
+        it(`from any`, () => {
+            const actual = PS.TextProcessor.convertAnyToSinh(langStr);
+            expect(actual).toEqual(siStr);
+        });
+    });
+});
+
 describe('check conversion from SI', () => {
     testCases.forEach(({ lang, langStr, siStr }) => {
         it(`to ${lang}`, () => {

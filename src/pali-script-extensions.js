@@ -2,8 +2,13 @@ import * as PS from './pali-script';
 
 // TODO: Use number as intermediate language instead of Sinh.
 export const convert = (input, fromScript, toScript) => {
-    const sinh = this.convertToSinh(input, fromScript);
-    return this.convertFromSinh(sinh, toScript);
+    const sinh = PS.TextProcessor.convertToSinh(input, fromScript);
+    return PS.TextProcessor.convertFromSinh(sinh, toScript);
+};
+
+export const convertAny = (input, toScript) => {
+    const sinh = PS.TextProcessor.convertAnyToSinh(input);
+    return PS.TextProcessor.convertFromSinh(sinh, toScript);
 };
 
 export const getLocaleForScript = (s) => PS.PaliScriptInfo.get(s)?.[3].locale;
