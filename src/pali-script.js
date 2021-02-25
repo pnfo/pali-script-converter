@@ -316,26 +316,6 @@ function beautify_common(input, _script, rendType = '') {
     return text;
 }
 
-// for roman text only
-function capitalize(input, _script, _rendType = '') {
-    let text = input;
-    // the adding of <w> tags around the words before the beautification makes it harder - (?:<w>)? added
-    text = text.replace(/^((?:<w>)?\S)/g, (_1, p1) => {
-        // begining of a line
-        return p1.toUpperCase();
-    });
-    text = text.replace(/([\.\?]\s(?:<w>)?)(\S)/g, (_1, p1, p2) => {
-        // beginning of sentence
-        return `${p1}${p2.toUpperCase()}`;
-    });
-    return text.replace(/([\u201C‘](?:<w>)?)(\S)/g, (_1, p1, p2) => {
-        // starting from a quote
-        return `${p1}${p2.toUpperCase()}`;
-    });
-}
-
-const un_capitalize = (text) => text.toLowerCase();
-
 // for thai text - this can also be done in the convert stage
 function swap_e_o(text, script, _rendType = '') {
     if (script === Script.THAI) {
@@ -437,7 +417,7 @@ function un_beautify_tibet(text) {
 const beautify_func_default = [];
 const beautify_func = {
     [Script.SI]: [beautify_sinh, beautify_common],
-    [Script.RO]: [beautify_common, capitalize],
+    [Script.RO]: [beautify_common],
     [Script.THAI]: [swap_e_o, beautify_thai, beautify_common],
     [Script.LAOS]: [swap_e_o, beautify_common],
     [Script.MY]: [beautify_mymr, beautify_common],
@@ -455,7 +435,6 @@ const un_beautify_func_default = [];
 const un_beautify_func = {
     [Script.SI]: [cleanup_zwj, un_beautify_sinh],
     [Script.HI]: [cleanup_zwj], // original deva script (from tipitaka.org) text has zwj
-    [Script.RO]: [un_capitalize],
     [Script.THAI]: [un_beautify_thai, un_swap_e_o],
     [Script.LAOS]: [un_swap_e_o],
     [Script.KM]: [un_beautify_khmer],
@@ -502,7 +481,7 @@ function replaceByMaps(inputText, hashMaps) {
 }
 
 // for roman/cyrl text - insert 'a' after all consonants that are not followed by virama, dependent vowel or 'a'
-// cyrillic mapping extracted from https://dhamma.ru/scripts/transdisp.js - TODO capitalize cyrl too
+// cyrillic mapping extracted from https://dhamma.ru/scripts/transdisp.js
 function insert_a(input, script) {
     const a = script === Script.CYRL ? '\u0430' : 'a'; // roman a or cyrl a
     let text = input;

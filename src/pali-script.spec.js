@@ -12,7 +12,7 @@ const testCases = [
     {
         lang: PS.Script.RO,
         langStr:
-            'A ā i ī u ū e o k kh g gh ṅ c ch j jh ñ ṭ ṭh ḍ ḍh ṇ t th d dh n p ph b bh m y r l v s h ḷ ṃ 0 1 2 3 4 5 6 7 8 9 0',
+            'a ā i ī u ū e o k kh g gh ṅ c ch j jh ñ ṭ ṭh ḍ ḍh ṇ t th d dh n p ph b bh m y r l v s h ḷ ṃ 0 1 2 3 4 5 6 7 8 9 0',
         siStr:
             'අ ආ ඉ ඊ උ ඌ එ ඔ ක් ඛ් ග් ඝ් ඞ් ච් ඡ් ජ් ඣ් ඤ් ට් ඨ් ඩ් ඪ් ණ් ත් ථ් ද් ධ් න් ප් ඵ් බ් භ් ම් ය් ර් ල් ව් ස් හ් ළ් ං 0 1 2 3 4 5 6 7 8 9 0',
     },
