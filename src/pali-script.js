@@ -316,6 +316,8 @@ function beautify_common(input, _script, rendType = '') {
     return text;
 }
 
+const un_capitalize = (text) => text.toLowerCase();
+
 // for thai text - this can also be done in the convert stage
 function swap_e_o(text, script, _rendType = '') {
     if (script === Script.THAI) {
@@ -435,6 +437,7 @@ const un_beautify_func_default = [];
 const un_beautify_func = {
     [Script.SI]: [cleanup_zwj, un_beautify_sinh],
     [Script.HI]: [cleanup_zwj], // original deva script (from tipitaka.org) text has zwj
+    [Script.RO]: [un_capitalize], // some sources (e.g. VRI) use caps, but pāli has no caps.
     [Script.THAI]: [un_beautify_thai, un_swap_e_o],
     [Script.LAOS]: [un_swap_e_o],
     [Script.KM]: [un_beautify_khmer],
